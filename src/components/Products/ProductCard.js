@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import getStripe from '../../utils/stripejs'
 
 const cardStyles = {
   display: 'flex',
@@ -47,19 +46,7 @@ const ProductCard = ({ product }) => {
     event.preventDefault()
     setLoading(true)
 
-    const price = new FormData(event.target).get('priceSelect')
-    const stripe = await getStripe()
-    const { error } = await stripe.redirectToCheckout({
-      mode: 'payment',
-      lineItems: [{ price, quantity: 1 }],
-      successUrl: `${window.location.origin}/page-2/`,
-      cancelUrl: `${window.location.origin}/advanced`,
-    })
-
-    if (error) {
-      console.warn('Error:', error)
-      setLoading(false)
-    }
+    alert('Checking out!')
   }
 
   return (

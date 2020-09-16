@@ -4,9 +4,6 @@ import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header'
 import './layout.css'
-import stripeLogo from '../images/powered_by_stripe.svg'
-
-import '@stripe/stripe-js' // https://github.com/stripe/stripe-js#import-as-a-side-effect
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -31,20 +28,6 @@ const Layout = ({ children }) => (
           }}
         >
           {children}
-          <footer>
-            <div>
-              Built by <a href="https://twitter.com/thorwebdev">Thor</a> with{' '}
-              <a href="https://www.gatsbyjs.org">Gatsby</a> | View{' '}
-              <a href="https://github.com/gatsbyjs/gatsby/tree/master/examples/ecommerce-tutorial-with-stripe">
-                source
-              </a>
-            </div>
-            <div>
-              <a href="https://stripe.com">
-                <img src={stripeLogo} alt="Payments powered by Stripe" />
-              </a>
-            </div>
-          </footer>
         </div>
       </>
     )}
