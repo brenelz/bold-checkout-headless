@@ -39,50 +39,32 @@ const Checkout = () => {
       ],
     }
 
-    console.log(
-      'Hit endpoint',
-      `${process.env.GATSBY_BOLD_CHECKOUT_URL}/api/v1/byop/${process.env.GATSBY_SHOP_DOMAIN}/carts/create_for_byop`
-    )
-
-    console.log('cart is ', JSON.stringify({ cart }))
-
-    const result = {
-      success: true,
-      cart_id: 'fakecartid',
-    }
-
-    /*
     const result = await fetch(
       `${process.env.GATSBY_BOLD_CHECKOUT_URL}/api/v1/byop/${process.env.GATSBY_SHOP_DOMAIN}/carts/create_for_byop`,
       {
-        method:"POST",
-        body: JSON.stringify({ cart })
+        method: 'POST',
+        body: JSON.stringify({ cart }),
       }
     )
 
-    
-    */
+    const jsonResult = await result.json()
 
-    if (result.success) {
+    if (jsonResult.success) {
       const searchParams = new URLSearchParams()
       searchParams.set('platform', 'byop')
       searchParams.set('shop', process.env.GATSBY_SHOP_DOMAIN)
-      searchParams.set('cart_id', result.cart_id)
+      searchParams.set('cart_id', jsonResult.cart_id)
       searchParams.set(
         'return_url',
         `https://${process.env.GATSBY_SHOP_DOMAIN}`
       )
-      console.log('search params ', searchParams.toString())
       const action = `${
         process.env.GATSBY_BOLD_CHECKOUT_URL
       }/boldplatform/checkout/begin_byop?${searchParams.toString()}`
-      // location.replace(action)
-      console.log('Redirect to ', action)
+      window.location.replace(action)
     } else {
       alert('Error checking out')
     }
-
-    alert('Checking out')
   }
 
   return (
