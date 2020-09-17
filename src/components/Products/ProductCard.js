@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 
 const cardStyles = {
   display: 'flex',
@@ -10,7 +11,7 @@ const cardStyles = {
   boxShadow: '5px 5px 25px 0 rgba(46,61,73,.2)',
   backgroundColor: '#fff',
   borderRadius: '6px',
-  maxWidth: '300px',
+  maxWidth: '240px',
 }
 const buttonStyles = {
   display: 'block',
@@ -41,37 +42,35 @@ const formatPrice = (amount, currency) => {
 
 const ProductCard = ({ product }) => {
   const [loading, setLoading] = useState(false)
+  const { addItem } = useShoppingCart()
 
-  const handleSubmit = async event => {
-    event.preventDefault()
-    setLoading(true)
-
-    const cart = {
-      line_items: [
-        {
-          id: product.id,
-          quantity: 1,
-          title: product.title,
-          variant_title: product.variantTitle,
-          weight: product.weight,
-          taxable: product.taxable,
-          image: product.image,
-          requires_shipping: product.requiresShipping,
-          price: product.price,
-        },
-      ],
+  const transformProduct = product => {
+    return {
+        id: product.id,
+        name: product.title,
+        sku: product.id,
+        price: product.price,
+        image: product.image,
+        currency: 'CAD',
+        taxable: product.taxable,
+        weight: product.weight,
+        requires_shipping: product.requiresShipping
     }
+  };
 
-    alert('Checking out!')
+  const submitForm = evt => {
+      evt.preventDefault();
   }
 
   return (
     <div style={cardStyles}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitForm}>
         <fieldset style={{ border: 'none' }}>
           <legend>
             <h4>{product.title}</h4>
           </legend>
+          <img style={{width: '25%'}} src={product.image}></img>
+          <br/>
           <label>
             Price{' '}
             <select name="priceSelect">
@@ -81,13 +80,15 @@ const ProductCard = ({ product }) => {
         </fieldset>
         <button
           disabled={loading}
+          onClick={() => addItem(transformProduct(product))}
+          className={'bv-button bv-button--primary'}
           style={
             loading
               ? { ...buttonStyles, ...buttonDisabledStyles }
               : buttonStyles
           }
         >
-          BUY ME
+          <span className={'bv-button__text'}>Add to cart</span>
         </button>
       </form>
     </div>

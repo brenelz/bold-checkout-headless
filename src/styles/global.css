@@ -1,0 +1,43 @@
+.bv-button--primary {
+    color: #fff !important;
+    background-color: #0C92F2 !important;
+}
+
+.bv-button {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.5rem;
+    max-width: 100%;
+    margin: 0 0.25rem;
+    overflow: hidden;
+    padding: 0.3125rem 0.75rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    transition: all 0.15s linear;
+}
+
+.bv-button__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
