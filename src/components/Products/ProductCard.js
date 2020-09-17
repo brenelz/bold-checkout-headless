@@ -46,6 +46,22 @@ const ProductCard = ({ product }) => {
     event.preventDefault()
     setLoading(true)
 
+    const cart = {
+      line_items: [
+        {
+          id: product.id,
+          quantity: 1,
+          title: product.title,
+          variant_title: product.variantTitle,
+          weight: product.weight,
+          taxable: product.taxable,
+          image: product.image,
+          requires_shipping: product.requiresShipping,
+          price: product.price,
+        },
+      ],
+    }
+
     alert('Checking out!')
   }
 
@@ -54,16 +70,12 @@ const ProductCard = ({ product }) => {
       <form onSubmit={handleSubmit}>
         <fieldset style={{ border: 'none' }}>
           <legend>
-            <h4>{product.name}</h4>
+            <h4>{product.title}</h4>
           </legend>
           <label>
             Price{' '}
             <select name="priceSelect">
-              {product.prices.map(price => (
-                <option key={price.id} value={price.id}>
-                  {formatPrice(price.unit_amount, price.currency)}
-                </option>
-              ))}
+              <option>{formatPrice(product.price, 'CAD')}</option>
             </select>
           </label>
         </fieldset>

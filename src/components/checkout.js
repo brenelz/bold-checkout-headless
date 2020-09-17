@@ -22,6 +22,66 @@ const Checkout = () => {
   const redirectToCheckout = async event => {
     event.preventDefault()
     setLoading(true)
+
+    const cart = {
+      line_items: [
+        {
+          id: '70de22e4-4c92-5934-b4d8-12b2a3223d2e',
+          quantity: 1,
+          title: 'Product Title',
+          variant_title: 'Variant Title',
+          weight: 50,
+          taxable: true,
+          image: 'https://example.com/thing.jpg',
+          requires_shipping: true,
+          price: 2000,
+        },
+      ],
+    }
+
+    console.log(
+      'Hit endpoint',
+      `${process.env.GATSBY_BOLD_CHECKOUT_URL}/api/v1/byop/${process.env.GATSBY_SHOP_DOMAIN}/carts/create_for_byop`
+    )
+
+    console.log('cart is ', JSON.stringify({ cart }))
+
+    const result = {
+      success: true,
+      cart_id: 'fakecartid',
+    }
+
+    /*
+    const result = await fetch(
+      `${process.env.GATSBY_BOLD_CHECKOUT_URL}/api/v1/byop/${process.env.GATSBY_SHOP_DOMAIN}/carts/create_for_byop`,
+      {
+        method:"POST",
+        body: JSON.stringify({ cart })
+      }
+    )
+
+    
+    */
+
+    if (result.success) {
+      const searchParams = new URLSearchParams()
+      searchParams.set('platform', 'byop')
+      searchParams.set('shop', process.env.GATSBY_SHOP_DOMAIN)
+      searchParams.set('cart_id', result.cart_id)
+      searchParams.set(
+        'return_url',
+        `https://${process.env.GATSBY_SHOP_DOMAIN}`
+      )
+      console.log('search params ', searchParams.toString())
+      const action = `${
+        process.env.GATSBY_BOLD_CHECKOUT_URL
+      }/boldplatform/checkout/begin_byop?${searchParams.toString()}`
+      // location.replace(action)
+      console.log('Redirect to ', action)
+    } else {
+      alert('Error checking out')
+    }
+
     alert('Checking out')
   }
 
