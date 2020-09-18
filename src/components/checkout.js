@@ -32,7 +32,6 @@ const Checkout = () => {
           variant_title: 'Variant Title',
           weight: 50,
           taxable: true,
-          image: 'https://example.com/thing.jpg',
           requires_shipping: true,
           price: 2000,
         },
