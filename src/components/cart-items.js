@@ -87,7 +87,7 @@ export function CartItems() {
             <img style={{float: `left`, width: `50%`}} src={cartEntry.image}></img>
           </div>
           <div style={{float: `left`, width: '79%'}}>
-            <div style={{textAlign: `right`}}>Line total: {cartEntry.formattedValue}</div>
+            <div style={{textAlign: `right`, fontSize: `20px`}}>Line total: {cartEntry.formattedValue}</div>
             <div style={{float: `right`, position: `relative`, top: `75px`}}>
               <button
                 onClick={() => decrementItem(cartEntry.sku)}
@@ -103,7 +103,9 @@ export function CartItems() {
                 style={{
                   float: `left`,
                   marginLeft: `10px`,
-                  marginRight: `10px`
+                  marginRight: `10px`,
+                  fontSize: `15px`,
+                  marginTop: `10px`
                 }}
               >
                 Quantity: {cartEntry.quantity}

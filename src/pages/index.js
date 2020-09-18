@@ -9,7 +9,7 @@ const IndexPage = () => (
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <h1>Hi Boldies</h1>
     <p>Welcome to the Bold Headless Checkout.</p>
-    <Link to="/advanced/">Go to the example</Link>
+    <Link className={'bv-button'} to="/advanced/">Go to the example</Link>
   </Layout>
 )
 
