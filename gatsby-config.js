@@ -4,7 +4,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `Bold Headless Checkout`,
+    title: `BYOP Checkout`,
     description: `Accept payments in your Gatsby site using Stripe Checkout.`,
     author: `@thorwebdev`,
   },

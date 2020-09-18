@@ -41,7 +41,7 @@ const AdvancedExamplePage = ({ data }) => (
     billingAddressCollection={true}
   >
   <Layout>
-      <SEO title="Headless Checkout Example" />
+      <SEO title="BYOP Checkout Example" />
       <Products products={data.allContentfulProduct.nodes} />
       <h2>Your Cart</h2>
       <CartItems/>
